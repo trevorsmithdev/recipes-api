@@ -1,0 +1,22 @@
+{
+  "name": "recipes-api",
+  "version": "0.0.1",
+  "description": "A json REST api for fetching data relating to recipes.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "test"
+  },
+  "author": "Trevor Smith",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "lodash": "^4.17.20"
+  }
+}

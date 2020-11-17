@@ -8,4 +8,9 @@ exports.routesConfig = function (app) {
         recipesController.find
     ]);
 
+    app.get('/favorites', [
+        authMiddleware.setAuthHeader,
+        recipesController.favorites
+    ])
+
 };

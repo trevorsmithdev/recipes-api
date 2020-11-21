@@ -4,6 +4,8 @@ const authRouter = require('./authorization/routes.config')
 const recipesRouter = require('./recipes/routes.config')
 const cookieParser = require('cookie-parser')
 
+require('dotenv').config()
+
 const app = express()
 const port = 3000
 

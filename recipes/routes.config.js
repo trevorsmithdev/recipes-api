@@ -3,14 +3,13 @@ const authMiddleware = require('../authorization/auth-middleware')
 
 exports.routesConfig = function (app) {
 
-    app.get('/recipes/:id', [
-        authMiddleware.setAuthHeader,
-        recipesController.find
-    ]);
+    app.get('/recipes/:id', recipesController.find)
 
-    app.get('/favorites', [
-        authMiddleware.setAuthHeader,
-        recipesController.favorites
-    ])
+    app.get('/favorites', recipesController.favorites)
+
+    // app.get('ingredient-list', [
+    //     authMiddleware.setAuthHeader,
+    //     recipesController.ingredientList
+    // ])
 
 };

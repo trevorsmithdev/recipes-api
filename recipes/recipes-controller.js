@@ -12,3 +12,16 @@ exports.favorites = async (req, res) => {
     const favorites = await helloFresh.getFavorites(req.cookies)
     return res.status(200).send(favorites)
 }
+
+exports.getConsolidatedYields = async (req, res) => {
+    let ids = _.get(req, 'query.recipeIds', [])
+    ids = Array.isArray(ids) ? ids : [ids]
+    let promises = []
+    ids.forEach(id => {
+        const promise = helloFresh.getRecipe(id, req.cookies)
+        promises.push(promise)
+    })
+    const recipes = await Promise.all(promises)
+
+    return res.status(200).send(recipes)
+}

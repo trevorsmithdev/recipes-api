@@ -7,9 +7,6 @@ exports.routesConfig = function (app) {
 
     app.get('/favorites', recipesController.favorites)
 
-    // app.get('ingredient-list', [
-    //     authMiddleware.setAuthHeader,
-    //     recipesController.ingredientList
-    // ])
+    app.get('/yields', recipesController.getConsolidatedYields)
 
 };

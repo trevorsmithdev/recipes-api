@@ -23,5 +23,28 @@ exports.getConsolidatedYields = async (req, res) => {
     })
     const recipes = await Promise.all(promises)
 
-    return res.status(200).send(recipes)
+    const yields = recipes.reduce((prev, cur) => {
+        const ingredientList = cur.ingredients
+        cur.yields.find(y => y.yields === 2).ingredients.forEach(i => {
+            let ingredient = prev[i.id]
+            if (ingredient) {
+                prev[i.id] = { ...ingredient, amount: ingredient.amount + i.amount }
+            }
+            else {
+                const info = ingredientList.find(ing => ing.id === i.id)
+                const { name, slug, imageLink } = info
+                prev[i.id] = { ...i, name, slug, imageLink }
+            }
+        })
+        return prev
+    }, {})
+
+    const list = Object.keys(yields).map(id => {
+        const food = yields[id]
+        return food
+    })
+
+    const responseBody = { count: list.length, items: list }
+
+    return res.status(200).send(responseBody)
 }
